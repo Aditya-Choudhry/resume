@@ -1,7 +1,8 @@
-import streamlit as st
+import os
 from openai import OpenAI
+import streamlit as st
 
-# Access the API key securely from Streamlit's secrets
+# Access the API key from Streamlit secrets
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 # OpenRouter API Configuration
