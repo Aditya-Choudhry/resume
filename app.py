@@ -1,11 +1,11 @@
-import streamlit as st 
+import streamlit as st
 import pdfplumber
 from docx import Document
 import re
 from openai import OpenAI
 from PyPDF2 import PdfReader
 
-# Access the API key securely from Streamlit's secrets
+# Load the API key from Streamlit Secrets
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 # OpenRouter API Configuration
@@ -113,28 +113,28 @@ def main():
             # Extract text
             text = extract_text_from_pdf(uploaded_file) if uploaded_file.name.endswith('.pdf') else extract_text_from_docx(uploaded_file)
             name, email = extract_info(text)
-            
+
             st.subheader("🔍 Extracted Information")
             st.write(f"**Name:** {name}")
             st.write(f"**Email:** {email}")
-            
+
             # Required Skills Input
             required_skills = st.text_input("🎯 Enter Required Skills (comma separated):")
             required_skills = [skill.strip() for skill in required_skills.split(",")] if required_skills else []
-            
+
             if required_skills:
                 st.subheader("📊 AI-Powered ATS Score Analysis")
                 ats_analysis = get_ats_score_with_ai(text, required_skills)
                 st.write(ats_analysis)
-                
+
                 st.subheader("🛠 Resume Improvement Suggestions")
                 suggestions = get_resume_suggestions(text, required_skills)
                 st.write(suggestions)
-                
+
                 st.subheader("💼 Job Recommendations")
                 job_recommendations = get_job_recommendations(text)
                 st.write(job_recommendations)
-    
+
     # Reset Button
     if st.button("🔄 Reset"):
         st.rerun()
