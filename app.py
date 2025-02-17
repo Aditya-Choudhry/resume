@@ -1,14 +1,11 @@
-
-
-
- import streamlit as st
- import pdfplumber
- from docx import Document
- import re
- import os
- from openai import OpenAI
- from dotenv import load_dotenv  
- from PyPDF2 import PdfReader
+import streamlit as st
+import pdfplumber 
+from docx import Document
+import re
+import os
+from openai import OpenAI
+from dotenv import load_dotenv  
+from PyPDF2 import PdfReader
 
   Load API key from .env file
  load_dotenv()
