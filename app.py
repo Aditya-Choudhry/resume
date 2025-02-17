@@ -1,15 +1,12 @@
-import streamlit as st
+import streamlit as st 
 import pdfplumber
 from docx import Document
 import re
-import os
 from openai import OpenAI
-from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 
-# Load API key from .env file
-load_dotenv()
-API_KEY = os.getenv("OPENROUTER_API_KEY")
+# Access the API key securely from Streamlit's secrets
+API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 # OpenRouter API Configuration
 client = OpenAI(
@@ -111,7 +108,7 @@ def main():
                     st.text(page.extract_text())
             else:
                 st.write("(Preview not available for DOCX files)")
-        
+
         with col2:
             # Extract text
             text = extract_text_from_pdf(uploaded_file) if uploaded_file.name.endswith('.pdf') else extract_text_from_docx(uploaded_file)
