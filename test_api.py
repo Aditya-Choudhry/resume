@@ -1,10 +1,9 @@
 import os
 from openai import OpenAI
-from dotenv import load_dotenv
+import streamlit as st
 
-# Load API key from .env file
-load_dotenv()
-API_KEY = os.getenv("OPENROUTER_API_KEY")
+# Access the API key securely from Streamlit's secrets
+API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 # OpenRouter API Configuration
 client = OpenAI(
