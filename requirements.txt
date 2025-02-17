@@ -1,5 +1,6 @@
 streamlit
 pdfplumber
 python-docx
+PyPDF2
 openai
 python-dotenv
